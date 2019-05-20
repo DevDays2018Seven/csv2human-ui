@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { CsvService } from './services/csv.service';
+=======
+import {Component, OnInit} from '@angular/core';
+import {Chart, ChartDataSets} from 'chart.js';
+import {CsvService} from './services/csv.service';
+>>>>>>> d56e53fdf72689dc3908132d2b3a9856b0369473
 
 @Component({
   selector: 'app-root',
@@ -14,9 +20,22 @@ export class AppComponent implements OnInit {
 
   public rangeCount = 10;
 
+<<<<<<< HEAD
   public data: number[] = [];
 
   public labels: string[] = [];
+=======
+  public data: number[] = [1];
+  public labels: string[] = [''];
+
+  public scatterDataColumn1 = 'price';
+  public scatterDataColumn2 = 'review.point';
+  public scatterData: ChartDataSets[] = [{
+    data: [{x: 0, y: 0}],
+    label: 'Serie A'
+  }];
+  public scatterLabels: string[] = ['A'];
+>>>>>>> d56e53fdf72689dc3908132d2b3a9856b0369473
 
   public ranges = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
@@ -57,6 +76,23 @@ export class AppComponent implements OnInit {
       value => {
         this.data = value.data;
         this.labels = value.labels;
+<<<<<<< HEAD
       }, console.error);
+=======
+      },
+      (error) => {
+        console.log(error);
+      });
+
+    this.csvService.getScatterValues(this.scatterDataColumn1, this.scatterDataColumn2).subscribe(
+      (value) => {
+        this.scatterData[0].data = value.data;
+      },
+      (error) => {
+        console.log(error);
+      });
+
+    this.csvService.getHeaders().subscribe(headers => this.headers = headers);
+>>>>>>> d56e53fdf72689dc3908132d2b3a9856b0369473
   }
 }
