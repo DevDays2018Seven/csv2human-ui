@@ -1,8 +1,9 @@
 <div class="canvas-container">
-  <canvas #chart baseChart
-          [chartType]="chartType"
+  <canvas baseChart
+          chartType="bar"
           [labels]="labels"
-          [data]="data"></canvas>
+          [data]="data"
+          [legend]="false"></canvas>
 </div>
 
 <div>
