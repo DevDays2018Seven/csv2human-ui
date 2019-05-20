@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
 
   public labels: string[] = [];
 
-  public scatterDataColumn1 = 'price';
-  public scatterDataColumn2 = 'review.point';
+  public scatterDataColumn1;
+  public scatterDataColumn2;
   public scatterData: ChartDataSets[] = [{
     data: [{x: 0, y: 0}],
     label: 'Serie A'
@@ -38,18 +38,38 @@ export class AppComponent implements OnInit {
 
   public outlier = false;
 
+  public selectedScatterX = this.scatterDataColumn1;
+  public selectedScatterY = this.scatterDataColumn2;
+  public scatterOutlier = false;
+
   public constructor(public csvService: CsvService) {
   }
 
   public ngOnInit(): void {
     // this.fetchCsvs();
-    this.fetchData(this.attribute, this.rangeCount);
 
-    this.csvService.getHeaders().subscribe(headers => this.headers = headers);
+    this.csvService.getHeaders().subscribe(headers => {
+      this.headers = headers;
+
+      this.attribute = this.headers[0];
+      this.selectedHeader = this.attribute;
+      this.scatterDataColumn1 = this.headers[0];
+      this.scatterDataColumn2 = this.headers[0];
+      this.selectedScatterX = this.scatterDataColumn1;
+      this.selectedScatterY = this.scatterDataColumn2;
+
+      this.fetchData(this.attribute, this.rangeCount);
+
+      this.fetchScatterData(this.scatterDataColumn1, this.scatterDataColumn2);
+    });
   }
 
   public updatePlot(): void {
     this.fetchData(this.selectedHeader, this.selectedRangeWidth);
+  }
+
+  public updateScatterPlot(): void {
+    this.fetchScatterData(this.selectedScatterX, this.selectedScatterY);
   }
 
   private fetchCsvs(): void {
@@ -66,16 +86,15 @@ export class AppComponent implements OnInit {
         this.data = value.data;
         this.labels = value.labels;
       }, console.error);
+  }
 
-
-    this.csvService.getScatterValues(this.scatterDataColumn1, this.scatterDataColumn2).subscribe(
+  private fetchScatterData(col1: string, col2: string): void {
+    this.csvService.getScatterValues(col1, col2, this.scatterOutlier).subscribe(
       (value) => {
         this.scatterData[0].data = value.data;
       },
       (error) => {
         console.log(error);
       });
-
-    this.csvService.getHeaders().subscribe(headers => this.headers = headers);
   }
 }

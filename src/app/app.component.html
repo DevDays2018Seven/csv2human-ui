@@ -38,4 +38,17 @@
           [legend]="false"></canvas>
 </div>
 
+<div>
+  <select [(ngModel)]="selectedScatterX">
+    <option *ngFor="let header of headers" [ngValue]="header">{{ header }}</option>
+  </select>
+  <select [(ngModel)]="selectedScatterY">
+    <option *ngFor="let header of headers" [ngValue]="header">{{ header }}</option>
+  </select>
 
+  <input type="checkbox" [(ngModel)]="scatterOutlier">
+
+  <button (click)="updateScatterPlot()">Update plot</button>
+  <br>
+  <br>
+</div>

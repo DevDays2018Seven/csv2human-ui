@@ -26,8 +26,8 @@ export class CsvService {
     return this.httpClient.get<{ data: number[], labels: string[] }>(`${this.basePath}/plot/distribution/${column}/${ranges}${outlier ? '?outlier=dixon-q' : ''}`);
   }
 
-  public getScatterValues(column1: string, column2: string): Observable<{ data: { x: number, y: number }[] }> {
-    return this.httpClient.get<{ data: { x: number, y: number }[] }>(`/api/plot/scatter/${column1}/${column2}`);
+  public getScatterValues(column1: string, column2: string, outlier: boolean = false): Observable<{ data: { x: number, y: number }[] }> {
+    return this.httpClient.get<{ data: { x: number, y: number }[] }>(`/api/plot/scatter/${column1}/${column2}${outlier ? '?outlier=dixon-q' : ''}`);
   }
 
 }
