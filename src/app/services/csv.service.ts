@@ -18,4 +18,8 @@ export class CsvService {
     return this.httpClient.get<{ data: number[], labels: string[] }>(`${this.basePath}/plot/distribution/${column}/${ranges}`);
   }
 
+  public getScatterValues(column1: string, column2: string): Observable<{ data: { x: number, y: number }[] }> {
+    return this.httpClient.get<{ data: { x: number, y: number }[] }>(`/api/plot/scatter/${column1}/${column2}`);
+  }
+
 }

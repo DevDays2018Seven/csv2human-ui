@@ -6,6 +6,14 @@
           [legend]="false"></canvas>
 </div>
 
+<div class="canvas-container">
+  <canvas baseChart
+          chartType="scatter"
+          [labels]="scatterLabels"
+          [datasets]="scatterData"
+          [legend]="false"></canvas>
+</div>
+
 <div>
   <select [(ngModel)]="selectedHeader">
     <option *ngFor="let header of headers" [ngValue]="header">{{ header }}</option>
