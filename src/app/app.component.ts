@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.getData(this.attribute, this.rangeCount).subscribe(
       (value) => {
         this.data = value.data;
-        this.labels = value.ranges;
+        this.labels = value.labels;
       },
       (error) => {
         console.log(error);
@@ -35,11 +35,11 @@ export class AppComponent implements OnInit {
   public constructor(public csvService: CsvService) {
   }
 
-  public getData(attribute: string, rangesCount): Observable<{ data: number[], ranges: string[] }> {
+  public getData(attribute: string, rangesCount): Observable<{ data: number[], labels: string[] }> {
 
     return of({
       data: [3, 12, 6, 20, 4],
-      ranges: ['<10', '10 - 20', '20 - 30', '30 - 40']
+      labels: ['<10', '10 - 20', '20 - 30', '30 - 40']
     });
   }
 }
