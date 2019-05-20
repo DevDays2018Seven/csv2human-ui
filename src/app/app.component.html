@@ -1,3 +1,9 @@
+<div class="canvas-container">
+  <canvas #chart></canvas>
+</div>
+
 <div>
-  <canvas #chart width="400" height="400"></canvas>
+  <ul>
+    <li *ngFor="let header of headers">{{ header }}</li>
+  </ul>
 </div>
