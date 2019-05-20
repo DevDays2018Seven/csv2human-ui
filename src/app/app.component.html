@@ -1,5 +1,8 @@
 <div class="canvas-container">
-  <canvas #chart></canvas>
+  <canvas #chart baseChart
+          [chartType]="chartType"
+          [labels]="labels"
+          [data]="data"></canvas>
 </div>
 
 <div>

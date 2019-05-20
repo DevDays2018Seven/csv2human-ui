@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CsvService } from './services/csv.service';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { CsvService } from './services/csv.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
     CsvService
