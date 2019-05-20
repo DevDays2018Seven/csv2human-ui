@@ -16,7 +16,10 @@ export class AppComponent implements OnInit {
   public data: number[] = [];
   public labels: string[] = [];
 
+  public ranges = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
   public selectedHeader;
+  public selectedRangeWidth;
 
   public constructor(public csvService: CsvService) {
   }
@@ -27,8 +30,8 @@ export class AppComponent implements OnInit {
     this.csvService.getHeaders().subscribe(headers => this.headers = headers);
   }
 
-  public setHeader(): void {
-    this.fetchData(this.selectedHeader, this.rangeCount);
+  public updatePlot(): void {
+    this.fetchData(this.selectedHeader, this.selectedRangeWidth);
   }
 
   private fetchData(attribute: string, rangeCount: number): void {

@@ -10,6 +10,9 @@
   <select [(ngModel)]="selectedHeader">
     <option *ngFor="let header of headers" [ngValue]="header">{{ header }}</option>
   </select>
+  <select [(ngModel)]="selectedRangeWidth">
+    <option *ngFor="let range of ranges" [ngValue]="range">{{ range }}</option>
+  </select>
 
-  <button (click)="setHeader()">Set Attribute</button>
+  <button (click)="updatePlot()">Update plot</button>
 </div>
