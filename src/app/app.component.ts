@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -8,12 +8,18 @@ import { Chart } from 'chart.js';
 })
 export class AppComponent implements OnInit {
   @ViewChild('chart')
-  public canvas: HTMLCanvasElement;
+  public canvas: ElementRef;
 
   public chart: Chart = null;
 
+  public context: CanvasRenderingContext2D;
+
   public ngOnInit(): void {
-    this.chart = new Chart(this.canvas, {
+    this.context = (this.canvas.nativeElement as HTMLCanvasElement).getContext('2d');
+
+    console.log(this.context);
+
+    this.chart = new Chart(this.context, {
       type: 'bar',
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
