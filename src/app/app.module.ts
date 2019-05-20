@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,7 +14,8 @@ import {ChartsModule} from 'ng2-charts';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   providers: [
     CsvService

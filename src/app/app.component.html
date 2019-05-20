@@ -7,7 +7,9 @@
 </div>
 
 <div>
-  <ul>
-    <li *ngFor="let header of headers">{{ header }}</li>
-  </ul>
+  <select [(ngModel)]="selectedHeader">
+    <option *ngFor="let header of headers" [ngValue]="header">{{ header }}</option>
+  </select>
+
+  <button (click)="setHeader()">Set Attribute</button>
 </div>

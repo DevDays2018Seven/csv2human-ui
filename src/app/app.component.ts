@@ -16,11 +16,23 @@ export class AppComponent implements OnInit {
   public data: number[] = [];
   public labels: string[] = [];
 
+  public selectedHeader;
+
   public constructor(public csvService: CsvService) {
   }
 
   public ngOnInit(): void {
-    this.csvService.getColumnInRange(this.attribute, this.rangeCount).subscribe(
+    this.fetchData(this.attribute, this.rangeCount);
+
+    this.csvService.getHeaders().subscribe(headers => this.headers = headers);
+  }
+
+  public setHeader(): void {
+    this.fetchData(this.selectedHeader, this.rangeCount);
+  }
+
+  private fetchData(attribute: string, rangeCount: number): void {
+    this.csvService.getColumnInRange(attribute, rangeCount).subscribe(
       (value) => {
         this.data = value.data;
         this.labels = value.labels;
@@ -28,7 +40,5 @@ export class AppComponent implements OnInit {
       (error) => {
         console.log(error);
       });
-
-    this.csvService.getHeaders().subscribe(headers => this.headers = headers);
   }
 }
