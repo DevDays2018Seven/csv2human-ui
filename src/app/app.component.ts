@@ -10,7 +10,7 @@ import {CsvService} from './services/csv.service';
 export class AppComponent implements OnInit {
   public headers: string[];
 
-  public attribute = 'price';
+  public attribute = 'review.point';
   public rangeCount = 10;
 
   public data: number[] = [];
