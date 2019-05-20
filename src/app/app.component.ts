@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Chart, ChartDataSets} from 'chart.js';
 import {CsvService} from './services/csv.service';
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -81,7 +82,9 @@ export class AppComponent implements OnInit {
   }
 
   private fetchData(attribute: string, rangeCount: number): void {
-    this.csvService.getColumnInRange(attribute, rangeCount, this.outlier).subscribe(
+    this.csvService.getColumnInRange(attribute, rangeCount, this.outlier)
+      .pipe(take(1))
+      .subscribe(
       value => {
         this.data = value.data;
         this.labels = value.labels;
@@ -89,8 +92,11 @@ export class AppComponent implements OnInit {
   }
 
   private fetchScatterData(col1: string, col2: string): void {
-    this.csvService.getScatterValues(col1, col2, this.scatterOutlier).subscribe(
+    this.csvService.getScatterValues(col1, col2, this.scatterOutlier)
+      .pipe(take(1))
+      .subscribe(
       (value) => {
+        this.scatterData[0].data = [];
         this.scatterData[0].data = value.data;
       },
       (error) => {
