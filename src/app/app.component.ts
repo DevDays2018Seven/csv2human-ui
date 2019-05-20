@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
 
   public ranges = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-  public selectedHeader;
-  public selectedRangeWidth;
+  public selectedHeader = this.attribute;
+  public selectedRangeWidth = this.rangeCount;
 
   public constructor(public csvService: CsvService) {
   }
