@@ -11,7 +11,7 @@ import {take} from "rxjs/operators";
 export class AppComponent implements OnInit {
   public headers: string[];
 
-  public attribute = 'review.point';
+  public attribute;
 
   public rangeCount = 10;
 
@@ -47,8 +47,12 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // this.fetchCsvs();
+    this.fetchCsvs();
 
+    this.fetchAll();
+  }
+
+  private fetchAll(): void {
     this.csvService.getHeaders().subscribe(headers => {
       this.headers = headers;
 
@@ -71,6 +75,13 @@ export class AppComponent implements OnInit {
 
   public updateScatterPlot(): void {
     this.fetchScatterData(this.selectedScatterX, this.selectedScatterY);
+  }
+
+  public selectCsv(): void {
+    this.csvService.setCsv(this.selectedCsv).subscribe(
+      _ => {
+        this.fetchAll();
+      }, console.error);
   }
 
   private fetchCsvs(): void {

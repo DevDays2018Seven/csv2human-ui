@@ -3,6 +3,7 @@
     <option *ngFor="let csv of csvs" [ngValue]="csv">{{ csv }}</option>
   </select>
 
+  <button (click)="selectCsv()">Select CSV</button>
   <br>
   <br>
 </div>
