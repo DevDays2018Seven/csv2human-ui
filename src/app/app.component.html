@@ -2,6 +2,9 @@
   <select [(ngModel)]="selectedCsv">
     <option *ngFor="let csv of csvs" [ngValue]="csv">{{ csv }}</option>
   </select>
+
+  <br>
+  <br>
 </div>
 
 <div class="canvas-container">
@@ -9,14 +12,6 @@
           chartType="bar"
           [labels]="labels"
           [data]="data"
-          [legend]="false"></canvas>
-</div>
-
-<div class="canvas-container">
-  <canvas baseChart
-          chartType="scatter"
-          [labels]="scatterLabels"
-          [datasets]="scatterData"
           [legend]="false"></canvas>
 </div>
 
@@ -31,4 +26,16 @@
   <input type="checkbox" [(ngModel)]="outlier">
 
   <button (click)="updatePlot()">Update plot</button>
+  <br>
+  <br>
 </div>
+
+<div class="canvas-container">
+  <canvas baseChart
+          chartType="scatter"
+          [labels]="scatterLabels"
+          [datasets]="scatterData"
+          [legend]="false"></canvas>
+</div>
+
+
